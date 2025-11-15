@@ -1,9 +1,13 @@
-"use client"
+   "use client"
 
 import Image from "next/image"
 import { Heart, Users, Briefcase, Gift, TrendingUp, Home } from "lucide-react"
+import { useState } from "react"
+import { initializeRazorpay } from "@/app/actions/payment"
 
 export default function Services() {
+  const [isProcessing, setIsProcessing] = useState(false)
+
   const services = [
     { icon: Heart, label: "Life Path & Guidance" },
     { icon: Users, label: "Family & Relationships" },
@@ -12,6 +16,49 @@ export default function Services() {
     { icon: TrendingUp, label: "Career & Business" },
     { icon: Home, label: "Life Path & Guidance" },
   ]
+
+  const handleBooking = async () => {
+    setIsProcessing(true)
+    const amount = 349900 // Default price in paise (Rs. 3,499)
+    const selectedDuration = "20"
+
+    try {
+      // Call server action to get Razorpay key securely
+      const paymentConfig = await initializeRazorpay(amount, selectedDuration)
+
+      // Load Razorpay script
+      const script = document.createElement("script")
+      script.src = "https://checkout.razorpay.com/v1/checkout.js"
+      script.async = true
+      script.onload = () => {
+        const options = {
+          key: paymentConfig.key,
+          amount: paymentConfig.amount,
+          currency: paymentConfig.currency,
+          name: paymentConfig.name,
+          description: paymentConfig.description,
+          image: paymentConfig.image,
+          handler: (response: any) => {
+            alert("Payment successful! Payment ID: " + response.razorpay_payment_id)
+            // Here you can send the payment details to your backend
+          },
+          // No 'prefill' property is included — frontend will not send any customer prefill data
+          theme: {
+            color: "#b45309",
+          },
+        }
+
+        const rzp = new (window as any).Razorpay(options)
+        rzp.open()
+      }
+      document.body.appendChild(script)
+    } catch (error) {
+      alert("Failed to initialize payment. Please try again.")
+      console.error(error)
+    }
+
+    setIsProcessing(false)
+  }
 
   return (
     <section className="bg-orange-50 py-16 md:py-24">
@@ -36,7 +83,7 @@ export default function Services() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {services.map((service, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <service.icon size={24} className="text-amber-900 flex-shrink-0" />
+                  <service.icon size={24} className="text-amber-900 shrink-0" />
                   <span className="text-gray-700 font-medium">{service.label}</span>
                 </div>
               ))}
@@ -60,8 +107,12 @@ export default function Services() {
               </p>
             </div>
 
-            <button className="w-full bg-amber-700 text-white font-bold py-4 rounded-full hover:bg-amber-800 transition">
-              BOOK CONSULTATION
+            <button 
+              onClick={handleBooking}
+              disabled={isProcessing}
+              className="w-full bg-amber-700 text-white font-bold py-4 rounded-full hover:bg-amber-800 transition disabled:opacity-50"
+            >
+              {isProcessing ? "Processing..." : "BOOK CONSULTATION"}
             </button>
           </div>
         </div>

@@ -38,11 +38,7 @@ export default function Hero() {
             alert("Payment successful! Payment ID: " + response.razorpay_payment_id)
             // Here you can send the payment details to your backend
           },
-          prefill: {
-            name: "Customer Name",
-            email: "customer@example.com",
-            contact: "9999999999",
-          },
+          // No prefill configured — frontend will not send any customer prefill data
           theme: {
             color: "#b45309",
           },
