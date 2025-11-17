@@ -60,7 +60,7 @@ export default function Testimonials() {
                     <Quote size={53} />
                   </div>
 
-                  <p className="text-lg md:text-xl text-center text-[#ff6c0c] font-serif leading-relaxed mb-8">
+                  <p className="text-lg md:text-xl text-center text-black font-serif leading-relaxed mb-8">
                     {testimonial.text.toUpperCase()}
                   </p>
 
