@@ -13,7 +13,7 @@ export async function initializeRazorpay(amount: number, duration: string) {
     key: razorpayKey,
     amount,
     currency: "INR",
-    name: "Pandit Jagannath Guruji",
+    name: "Pandit Parmanand Goswami Ji",
     description: `Janma Kundali - ${duration} Minutes`,
     image:
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-11-10%20101603-benI3VabIXEfzT7U20tRstbG0GgEEA.png",

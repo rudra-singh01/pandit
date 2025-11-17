@@ -5,33 +5,33 @@ import { Star } from "lucide-react"
 export default function Reviews() {
   const reviews = [
     {
-      name: "Agni V.",
+      name: "Rohit Sharma",
       verified: true,
-      date: "26/10/2025",
+      date: "13/11/2025",
       rating: 5,
-      title: "Gappy",
-      duration: "20 Minutes",
+      title: "Very accurate and helpful guidance!",
+      duration: "30 Minutes",
     },
     {
-      name: "Vejay P B.",
+      name: "Aisha Verma",
       verified: true,
-      date: "17/10/2025",
+      date: "15/11/2025",
       rating: 5,
-      title: "Good and useful interaction",
-      duration: "40 Minutes",
+      title: "Got clarity in just one session!",
+      duration: "15 Minutes",
     },
     {
-      name: "Indu S.",
+      name: "Neeraj Singh",
       verified: true,
-      date: "27/09/2025",
-      rating: 4,
-      title: "Great 🙏",
-      duration: "20 Minutes",
+      date: "16/11/2025",
+      rating: 5,
+      title: "Best consultation I have ever taken.",
+      duration: "30 Minutes",
     },
   ]
 
   return (
-    <section className="bg-orange-50 py-16 md:py-24">
+    <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-12">
           <div className="flex items-center gap-4">
@@ -42,9 +42,9 @@ export default function Reviews() {
             </div>
             <span className="text-gray-700 font-medium">3 Reviews</span>
           </div>
-          <button className="border-2 border-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium hover:border-amber-700 hover:text-amber-700 transition">
+          {/* <button className="border-2 border-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium hover:border-amber-700 hover:text-amber-700 transition">
             Write a review
-          </button>
+          </button> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

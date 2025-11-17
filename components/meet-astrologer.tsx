@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 
 export default function MeetAstrologer() {
   return (
-    <section className="py-16 md:py-24 bg-orange-50">
+    <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Outer white card */}
@@ -16,7 +16,7 @@ export default function MeetAstrologer() {
             <div className="relative h-[70vh] md:h-[80vh] lg:h-[88vh]">
               <div className="absolute inset-0 md:rounded-l-[28px] sm:rounded-t-[28px] overflow-hidden">
                 <Image
-                  src="https://panditjagannathguruji.com/cdn/shop/files/Meet_your_Astrologer.jpg?v=1753612109&width=2000"
+                  src="https://ik.imagekit.io/e2chvlkmnb/WhatsApp%20Image%202025-11-17%20at%201.35.59%20PM.jpeg"
                   alt="Pandit Jagannath Guruji"
                   fill
                   className="object-cover"
@@ -41,25 +41,26 @@ export default function MeetAstrologer() {
               {/* Paragraphs */}
               <div className="space-y-5 text-[15.5px] md:text-base text-[#5F4B4B]">
                 <p className="leading-relaxed">
-                  <strong className="font-semibold text-[#5B4141]">Pandit Jagannath Guruji</strong> is a well-known name in
-                  Indian astrology, trusted by thousands across the world for his accurate predictions and practical guidance. 
-                  With deep knowledge in <strong>Vedic Astrology, Palmistry, and Face Reading</strong>, he brings years of 
-                  experience and a calm, thoughtful approach to every consultation.
+                  <strong className="font-semibold text-[#5B4141]">Pandit Parmanand Goswami Ji</strong> is a respected and trusted name in Indian astrology. With years of experience and thousands of satisfied clients, he is known for his accurate predictions, simple explanations, and practical solutions.
                 </p>
 
                 <p className="leading-relaxed">
-                  Whether it’s career, relationships, marriage, or health — Guruji's insights are always rooted in 
-                  tradition and delivered with care.
+                  His deep knowledge in <strong>Vedic Astrology, Kundali Reading, Palmistry, and Face Reading</strong> helps him understand every situation clearly. Guruji’s approach is calm, honest, and focused on giving the right guidance at the right time.
+                </p>
+
+                <p className="leading-relaxed">
+                  Whether you are facing issues in <strong>career, relationships, marriage, money, or health</strong>, Goswami Ji’s insights are always rooted in true tradition and delivered with care.
+
                 </p>
               </div>
 
               {/* Button */}
-              <div className="mt-8">
+              {/* <div className="mt-8">
                 <button className="inline-flex items-center gap-3 px-8 py-3 rounded-full font-bold text-white bg-[#B65A4C] shadow-lg hover:bg-[#a34c40] transition">
                   READ FULL
                   <ArrowRight size={18} />
                 </button>
-              </div>
+              </div> */}
 
             </div>
 

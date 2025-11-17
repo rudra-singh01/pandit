@@ -39,8 +39,12 @@ export default function Services() {
           description: paymentConfig.description,
           image: paymentConfig.image,
           handler: (response: any) => {
-            alert("Payment successful! Payment ID: " + response.razorpay_payment_id)
-            // Here you can send the payment details to your backend
+            // Redirect to booking URL after successful payment. Append payment id for reference.
+            const bookingUrl = "https://starpandit.trafft.com/booking?t=s&uuid=8781485d-1255-4081-ba81-24993f10baac"
+            const redirectUrl = `${bookingUrl}${bookingUrl.includes('?') ? '&' : '?'}payment_id=${encodeURIComponent(
+              response.razorpay_payment_id
+            )}`
+            window.location.href = redirectUrl
           },
           // No 'prefill' property is included — frontend will not send any customer prefill data
           theme: {

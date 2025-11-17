@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 bg-orange-50 border-b border-gray-200 z-50 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
+        className={`fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50 transition-transform duration-300 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +47,7 @@ export default function Header() {
               <div className="text-xs">GURUJI</div>
             </div> */}
               <Image
-                src='https://panditjagannathguruji.com/cdn/shop/files/PJG_Final_Logo.svg?v=1754622785&width=320'
+                src='https://ik.imagekit.io/devzones/starpandit(150%20x%2070%20px).png'
                 alt='Pandit Jagannath Guruji Logo'
                 width={170}
                 height={30}

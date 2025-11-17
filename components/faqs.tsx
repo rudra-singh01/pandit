@@ -9,25 +9,25 @@ export default function FAQs() {
   const faqs = [
     {
       question: "Can I ask multiple questions during the consultation?",
-      answer: "Yes, you can ask multiple questions during the consultation. Guruji will address all your concerns.",
+      answer: "Yes, you can ask as many questions as you want within your selected time.",
     },
     {
       question: "Can I cancel or reschedule my appointment?",
-      answer: "Yes, you can cancel or reschedule your appointment up to 24 hours before the scheduled time.",
+      answer: "Yes, you can reschedule your appointment. Cancellations depend on our policy, but we always try to help.",
     },
     {
       question: "What happens incase I miss my appointment?",
-      answer: "If you miss your appointment, the slot may be forfeited unless you reschedule it in advance.",
+      answer: "If you miss the call, you can request a new slot. Rescheduling is subject to availability.",
     },
     {
       question: "Can we create a Janma Kundali if we do not know the birth time?",
       answer:
-        "A Janma Kundali can be created without the exact birth time, but accuracy is enhanced with precise timing.",
+        "Yes, it’s possible. Pandit Ji uses special methods to estimate the birth time and create an accurate Kundali.",
     },
     {
       question: "What can I expect from the consultation?",
       answer:
-        "You can expect detailed insights into your life, relationships, career, and spiritual growth based on your birth chart.",
+        "You will receive clear guidance, practical remedies, and answers to your personal problems—explained in simple, easy language.",
     },
   ]
 
