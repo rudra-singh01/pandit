@@ -39,7 +39,7 @@ export default function YouMayAlsoLike() {
   return (
     <section className="bg-orange-50 py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-serif text-amber-900 font-bold mb-12">You may also like</h2>
+  <h2 className="text-4xl md:text-5xl font-serif text-[#ff6c0c] font-bold mb-12">You may also like</h2>
 
         <Swiper
           modules={[Navigation, Pagination]}
@@ -61,8 +61,8 @@ export default function YouMayAlsoLike() {
                 <div className="relative group rounded-2xl overflow-hidden h-64">
                   <Image src={service.image || "/placeholder.svg"} alt={service.title} fill className="object-cover" />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition flex items-center justify-center">
-                    <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center hover:bg-amber-100 transition">
-                      <Play size={24} className="fill-amber-700 text-amber-700 ml-1" />
+                    <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center hover:bg-[#ff6c0c] transition">
+                      <Play size={24} className="fill-[#ff6c0c] text-[#ff6c0c] ml-1" />
                     </div>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
@@ -73,7 +73,7 @@ export default function YouMayAlsoLike() {
                 {/* Title and Price */}
                 <div>
                   <h3 className="font-bold text-gray-900 text-center">{service.title}</h3>
-                  <p className="text-amber-700 font-semibold text-center">{service.price}</p>
+                  <p className="text-[#ff6c0c] font-semibold text-center">{service.price}</p>
                 </div>
 
                 {/* Tags */}

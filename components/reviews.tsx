@@ -37,12 +37,12 @@ export default function Reviews() {
           <div className="flex items-center gap-4">
             <div className="flex gap-1">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={24} className="fill-amber-700 text-amber-700" />
+                <Star key={i} size={24} className="fill-[#ff6c0c] text-[#ff6c0c]" />
               ))}
             </div>
             <span className="text-gray-700 font-medium">3 Reviews</span>
           </div>
-          {/* <button className="border-2 border-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium hover:border-amber-700 hover:text-amber-700 transition">
+          {/* <button className="border-2 border-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium hover:border-[#ff6c0c] hover:text-[#ff6c0c] transition">
             Write a review
           </button> */}
         </div>
@@ -61,7 +61,7 @@ export default function Reviews() {
               <p className="text-sm text-gray-600 mb-3">{review.date}</p>
               <div className="flex gap-1 mb-3">
                 {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} size={18} className="fill-amber-700 text-amber-700" />
+                  <Star key={i} size={18} className="fill-[#ff6c0c] text-[#ff6c0c]" />
                 ))}
                 {[...Array(5 - review.rating)].map((_, i) => (
                   <Star key={i} size={18} className="text-gray-300" />

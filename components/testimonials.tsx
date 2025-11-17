@@ -56,15 +56,15 @@ export default function Testimonials() {
             {testimonials.map((testimonial) => (
               <SwiperSlide key={testimonial.id}>
                 <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl">
-                  <div className="text-5xl text-amber-700 mb-6 text-center flex items-center justify-center">
+                  <div className="text-5xl text-[#ff6c0c] mb-6 text-center flex items-center justify-center">
                     <Quote size={53} />
                   </div>
 
-                  <p className="text-lg md:text-xl text-center text-amber-900 font-serif leading-relaxed mb-8">
+                  <p className="text-lg md:text-xl text-center text-[#ff6c0c] font-serif leading-relaxed mb-8">
                     {testimonial.text.toUpperCase()}
                   </p>
 
-                  <p className="text-center text-amber-700 font-semibold">
+                  <p className="text-center text-[#ff6c0c] font-semibold">
                     — {testimonial.author}
                   </p>
                 </div>

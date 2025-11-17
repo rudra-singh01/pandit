@@ -10,7 +10,7 @@ export default function Footer() {
     <>
       {/* Newsletter Section */}
 
-      {/* <section className="bg-gradient-to-r from-amber-700 to-amber-900 py-12">
+  {/* <section className="bg-gradient-to-r from-[#ff6c0c] to-[#ff6c0c] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             
@@ -68,7 +68,7 @@ export default function Footer() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-transparent text-white placeholder-white/50 px-4 py-2 flex-1 outline-none"
                 />
-                <button className="bg-white text-amber-700 rounded-full p-2 hover:bg-yellow-50 transition">
+                <button className="bg-white text-[#ff6c0c] rounded-full p-2 hover:bg-yellow-50 transition">
                   <ArrowRight size={20} />
                 </button>
               </div>

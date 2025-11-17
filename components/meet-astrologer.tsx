@@ -26,16 +26,13 @@ export default function MeetAstrologer() {
             </div>
 
             {/* RIGHT CONTENT */}
-            <div className="px-8 md:px-12 lg:px-16 py-12 md:py-20 flex flex-col justify-center">
+            <div className="px-8 md:px-12 lg:px-16 py-12 md:py-20 flex flex-col justify-start">
               
               {/* Heading */}
               <h2
-                className="text-4xl md:text-5xl font-serif font-bold text-[#7B5454] leading-tight mb-6"
-                style={{ fontFamily: "'Playfair Display', serif" }}
+                className="text-4xl md:text-4xl font-serif font-bold text-[#ff6c0c] leading-tight mb-6"
               >
-                Meet your
-                <br />
-                Astrologer
+                Meet your Astrologer
               </h2>
 
               {/* Paragraphs */}

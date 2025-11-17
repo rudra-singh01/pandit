@@ -82,12 +82,12 @@ export default function Services() {
 
           {/* Right - Content & Services */}
           <div className="space-y-8">
-            <h2 className="text-2xl font-serif text-amber-900 font-bold">the life</h2>
+            <h2 className="text-2xl font-serif text-[#ff6c0c] font-bold">the life</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {services.map((service, index) => (
                 <div key={index} className="flex items-center gap-3">
-                  <service.icon size={24} className="text-amber-900 shrink-0" />
+                  <service.icon size={24} className="text-[#ff6c0c] shrink-0" />
                   <span className="text-gray-700 font-medium">{service.label}</span>
                 </div>
               ))}
@@ -114,7 +114,7 @@ export default function Services() {
             <button 
               onClick={handleBooking}
               disabled={isProcessing}
-              className="w-full bg-amber-700 text-white font-bold py-4 rounded-full hover:bg-amber-800 transition disabled:opacity-50"
+              className="w-full bg-[#ff6c0c] text-white font-bold py-4 rounded-full hover:bg-[#ff6c0c] transition disabled:opacity-50"
             >
               {isProcessing ? "Processing..." : "BOOK CONSULTATION"}
             </button>

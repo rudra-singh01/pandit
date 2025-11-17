@@ -112,7 +112,7 @@ export default function Hero() {
                       setActiveIndex(idx)
                     }}
                     className={`relative rounded-lg overflow-hidden border-2 ${
-                      activeIndex === idx ? "border-amber-700 scale-105" : "border-transparent"
+                      activeIndex === idx ? "border-[#ff6c0c] scale-105" : "border-transparent"
                     }`}
                     style={{ width: 72, height: 72 }}
                   >
@@ -125,8 +125,8 @@ export default function Hero() {
 
           {/* Right Content */}
           <div className="space-y-3">
-            <h1 className="text-4xl md:text-5xl font-serif text-amber-900 font-bold">
-              Janma Kundali
+            <h1 className="text-4xl md:text-5xl font-serif text-[#ff6c0c] font-bold">
+              Har Problem Ka Solution – With 1:1 Video Consultation!
             </h1>
 
             {/* Dynamic Price */}
@@ -145,7 +145,7 @@ export default function Hero() {
                 "Which remedies will give fast results",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
-                  <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5 text-[#ff6c0c]" fill="currentColor" viewBox="0 0 20 20">
                     <path
                       fillRule="evenodd"
                       d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.7-9.3a1 1 0 00-1.4-1.4L9 10.6 7.7 9.3A1 1 0 106.3 10.7l2 2a1 1 0 001.4 0l4-4z"
@@ -166,8 +166,8 @@ export default function Hero() {
                   onClick={() => setSelectedDuration(duration)}
                   className={`px-6 py-2 border-2 rounded-lg font-medium transition ${
                     selectedDuration === duration
-                      ? "bg-amber-700 border-amber-700 text-white"
-                      : "border-amber-900 text-amber-900 hover:bg-amber-50"
+                      ? "bg-[#ff6c0c] border-[#ff6c0c] text-white"
+                      : "border-[#ff6c0c] text-[#ff6c0c] hover:bg-[#ff6c0c]"
                   }`}
                 >
                   {duration} Minutes
@@ -179,7 +179,7 @@ export default function Hero() {
             <button
               onClick={handleBooking}
               disabled={isProcessing}
-              className="w-full bg-amber-700 text-white font-bold py-4 mt-4 rounded-full hover:bg-amber-800 disabled:opacity-50"
+              className="w-full bg-[#ff6c0c] text-white font-bold py-4 mt-4 rounded-full hover:bg-[#ff6c0c] disabled:opacity-50"
             >
               {isProcessing ? "Processing..." : "BOOK CONSULTATION"}
             </button>
