@@ -14,9 +14,9 @@ export async function initializeRazorpay(amount: number, duration: string) {
     amount,
     currency: "INR",
     name: "Pandit Parmanand Goswami Ji",
-    description: `Janma Kundali - ${duration} Minutes`,
+    description: ` Har Problem Ka Solution – With 1:1 Video Consultation! - ${duration} Minutes`,
     image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-11-10%20101603-benI3VabIXEfzT7U20tRstbG0GgEEA.png",
+      "https://ik.imagekit.io/devzones/starpandit(150%20x%2070%20px).png",
   }
 }
 
