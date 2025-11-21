@@ -101,7 +101,7 @@ export default function Hero() {
           handler: (response: RazorpayResponse) => {
             // Redirect to booking URL after successful payment. Append payment id for reference.
             const bookingUrl =
-              "https://starpandit.trafft.com/booking?t=s&uuid=8781485d-1255-4081-ba81-24993f10baac"
+              "https://starpandit.trafft.com/booking?t=s&uuid=1445277b-af93-4242-addd-c33df258ba85"
             const redirectUrl = `${bookingUrl}${
               bookingUrl.includes("?") ? "&" : "?"
             }payment_id=${encodeURIComponent(response.razorpay_payment_id ?? "")}`
