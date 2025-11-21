@@ -1,68 +1,16 @@
 "use client"
 
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import type { Swiper as SwiperType } from "swiper"
 import "swiper/css"
-import { initializeRazorpay } from "../app/actions/payment"
-
-// --- Strongly typed Razorpay shapes ---
-type RazorpayResponse = {
-  razorpay_payment_id?: string
-  razorpay_order_id?: string
-  razorpay_signature?: string
-  [key: string]: unknown
-}
-
-type RazorpayOptions = {
-  key: string
-  amount: number
-  currency?: string
-  name?: string
-  description?: string
-  image?: string
-  handler?: (response: RazorpayResponse) => void
-  theme?: { color?: string }
-}
-
-interface RazorpayInstance {
-  open: () => void
-}
-
-type RazorpayConstructor = new (opts: RazorpayOptions) => RazorpayInstance
-
-declare global {
-  interface Window {
-    Razorpay?: RazorpayConstructor
-  }
-}
-
-// Response returned by your server-side `initializeRazorpay` action
-type RazorpayInitResponse = {
-  key: string
-  amount: number
-  currency?: string
-  name?: string
-  description?: string
-  image?: string
-}
+import { initializeRazorpay } from "@/app/actions/payment"
 
 export default function Hero() {
   const [selectedDuration, setSelectedDuration] = useState("15")
   const [isProcessing, setIsProcessing] = useState(false)
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
+  const [swiperInstance, setSwiperInstance] = useState<any>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isClient, setIsClient] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
 
   // Updated prices (paise)
   const durationPrices: Record<string, number> = {
@@ -70,68 +18,46 @@ export default function Hero() {
     "30": 510000, // ₹5100
   }
 
-  // Actual prices to display alongside the discounted/display price (in rupees)
-  const actualPrices: Record<string, number> = {
-    "15": 5100,
-    "30": 8000,
-  }
-
   const displayPrice = durationPrices[selectedDuration] / 100
-  const actualPrice = actualPrices[selectedDuration] ?? displayPrice
 
   const handleBooking = async () => {
     setIsProcessing(true)
     const amount = durationPrices[selectedDuration]
 
     try {
-
-      const paymentConfig = (await initializeRazorpay(amount, selectedDuration)) as RazorpayInitResponse
+      const paymentConfig = await initializeRazorpay(amount, selectedDuration)
 
       const script = document.createElement("script")
       script.src = "https://checkout.razorpay.com/v1/checkout.js"
       script.async = true
 
       script.onload = () => {
-        const options: RazorpayOptions = {
+        const options = {
           key: paymentConfig.key,
           amount: paymentConfig.amount,
           currency: paymentConfig.currency,
           name: paymentConfig.name,
           description: paymentConfig.description,
           image: paymentConfig.image,
-          handler: (response: RazorpayResponse) => {
-            // Redirect to booking URL after successful payment. Append payment id for reference.
-            const bookingUrl =
-              "https://starpandit.trafft.com/booking?t=s&uuid=8781485d-1255-4081-ba81-24993f10baac"
-            const redirectUrl = `${bookingUrl}${bookingUrl.includes("?") ? "&" : "?"}payment_id=${encodeURIComponent(
-              response.razorpay_payment_id ?? ""
-            )}`
-            window.location.href = redirectUrl
+          handler: (response: any) => {
+              // Redirect to booking URL after successful payment. Append payment id for reference.
+              const bookingUrl = "https://starpandit.trafft.com/booking?t=s&uuid=8781485d-1255-4081-ba81-24993f10baac"
+              const redirectUrl = `${bookingUrl}${bookingUrl.includes('?') ? '&' : '?'}payment_id=${encodeURIComponent(
+                response.razorpay_payment_id
+              )}`
+              window.location.href = redirectUrl
           },
           theme: { color: "#b45309" },
         }
 
-
-        if (typeof window !== "undefined" && typeof window.Razorpay === "function") {
-          try {
-            const RzpCtor = window.Razorpay
-            const rzp = new RzpCtor(options)
-            rzp.open()
-          } catch (err) {
-
-            console.error("Failed to open Razorpay checkout:", err)
-          }
-        } else {
-          // eslint-disable-next-line no-console
-          console.error("Razorpay constructor not available on window")
-        }
+        const rzp = new (window as any).Razorpay(options)
+        rzp.open()
       }
 
       document.body.appendChild(script)
     } catch (error) {
-
-      console.error(error)
       alert("Failed to initialize payment. Please try again.")
+      console.error(error)
     }
 
     setIsProcessing(false)
@@ -141,7 +67,6 @@ export default function Hero() {
     {
       id: 1,
       src: "https://ik.imagekit.io/e2chvlkmnb/WhatsApp%20Image%202025-11-17%20at%201.23.51%20PM.jpeg",
-      mobileSrc: "https://ik.imagekit.io/e2chvlkmnb/image_361x420.jpg",
       alt: "Pandit Parmanand Goswami - 1",
     },
     {
@@ -153,14 +78,16 @@ export default function Hero() {
 
   return (
     <section className="bg-white py-20 md:py-20 mt-3">
-      <div className="max-w-7xl mx-auto px-1 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+          {/* Left - Gallery */}
           <div className="flex justify-center">
             <div className="w-full max-w-2xl">
-              <div className="rounded-sm md:rounded-xl overflow-hidden bg-gray-50 shadow-sm">
+              <div className="rounded-3xl overflow-hidden bg-gray-50 shadow-sm">
                 <Swiper
-                  onSwiper={(swiper: SwiperType) => setSwiperInstance(swiper)}
-                  onSlideChange={(s: SwiperType) => setActiveIndex(s.activeIndex)}
+                  onSwiper={(swiper) => setSwiperInstance(swiper)}
+                  onSlideChange={(s) => setActiveIndex(s.activeIndex)}
                   slidesPerView={1}
                   loop={false}
                   className="h-[420px] md:h-[600px]"
@@ -168,18 +95,14 @@ export default function Hero() {
                   {gallery.map((img) => (
                     <SwiperSlide key={img.id}>
                       <div className="relative w-full h-[420px] md:h-[600px]">
-                        <Image
-                          src={isClient && isMobile && img.mobileSrc ? img.mobileSrc : img.src}
-                          alt={img.alt}
-                          fill
-                          className="object-cover"
-                        />
+                        <Image src={img.src} alt={img.alt} fill className="object-cover" />
                       </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
               </div>
 
+              {/* Thumbnails */}
               <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
                 {gallery.map((img, idx) => (
                   <button
@@ -188,8 +111,9 @@ export default function Hero() {
                       swiperInstance?.slideTo(idx)
                       setActiveIndex(idx)
                     }}
-                    className={`relative rounded-lg overflow-hidden border-2 ${activeIndex === idx ? "border-[#ff6c0c] scale-105" : "border-transparent"
-                      }`}
+                    className={`relative rounded-lg overflow-hidden border-2 ${
+                      activeIndex === idx ? "border-[#ff6c0c] scale-105" : "border-transparent"
+                    }`}
                     style={{ width: 72, height: 72 }}
                   >
                     <Image src={img.src} alt={img.alt} fill className="object-cover" />
@@ -199,22 +123,19 @@ export default function Hero() {
             </div>
           </div>
 
+          {/* Right Content */}
           <div className="space-y-3">
             <h1 className="text-4xl md:text-5xl font-serif text-[#ff6c0c] font-bold">
               Har Problem Ka Solution – With 1:1 Video Consultation!
             </h1>
 
-            <p className="text-lg text-gray-700 font-semibold flex items-baseline gap-2">
-              Rs. {displayPrice}
-              <span className="text-sm text-red-500 line-through mt-0.5">
-                ₹{actualPrice}
-              </span>
-            </p>
+            {/* Dynamic Price */}
+            <p className="text-lg text-gray-700 font-semibold">Rs. {displayPrice}</p>
 
             <p className="text-gray-600">Life gets difficult when you don’t know what to do next. Whether it’s love, marriage, career, money, or health, the right guidance can change everything.</p>
             <p className="text-gray-600">With our 1:1 Live Video Consultation, you get personal, accurate and practical solutions for every problem.</p>
             <p className="text-gray-600">Our expert astrologer Pandit Parmanand Goswami Ji studies your Kundali carefully and explains:</p>
-
+            {/* List */}
             <ul className="space-y-3">
               {[
                 "Why certain problems keep coming",
@@ -237,21 +158,24 @@ export default function Hero() {
             </ul>
             <p className="text-gray-600">Every consultation is simple, honest and focused on giving you clarity.</p>
 
+            {/* Duration Buttons */}
             <div className="flex gap-4 pt-4">
-              {['15', '30'].map((duration) => (
+              {["15", "30"].map((duration) => (
                 <button
                   key={duration}
                   onClick={() => setSelectedDuration(duration)}
-                  className={`px-6 py-2 border-2 rounded-lg font-medium transition ${selectedDuration === duration
+                  className={`px-6 py-2 border-2 rounded-lg font-medium transition ${
+                    selectedDuration === duration
                       ? "bg-[#ff6c0c] border-[#ff6c0c] text-white"
                       : "border-[#ff6c0c] text-[#ff6c0c] hover:bg-[#ff6c0c]"
-                    }`}
+                  }`}
                 >
                   {duration} Minutes
                 </button>
               ))}
             </div>
 
+            {/* CTA */}
             <button
               onClick={handleBooking}
               disabled={isProcessing}

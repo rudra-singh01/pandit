@@ -40,7 +40,7 @@ export default function Reviews() {
                 <Star key={i} size={24} className="fill-[#ff6c0c] text-[#ff6c0c]" />
               ))}
             </div>
-            <span className="text-gray-700 font-medium">3 Reviews</span>
+            <span className="text-gray-700 font-medium">300 Reviews</span>
           </div>
           {/* <button className="border-2 border-gray-400 text-gray-700 px-6 py-2 rounded-lg font-medium hover:border-[#ff6c0c] hover:text-[#ff6c0c] transition">
             Write a review
