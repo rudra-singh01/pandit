@@ -84,7 +84,6 @@ export default function Hero() {
     const amount = durationPrices[selectedDuration]
 
     try {
-
       const paymentConfig = (await initializeRazorpay(amount, selectedDuration)) as RazorpayInitResponse
 
       const script = document.createElement("script")
@@ -103,14 +102,13 @@ export default function Hero() {
             // Redirect to booking URL after successful payment. Append payment id for reference.
             const bookingUrl =
               "https://starpandit.trafft.com/booking?t=s&uuid=8781485d-1255-4081-ba81-24993f10baac"
-            const redirectUrl = `${bookingUrl}${bookingUrl.includes("?") ? "&" : "?"}payment_id=${encodeURIComponent(
-              response.razorpay_payment_id ?? ""
-            )}`
+            const redirectUrl = `${bookingUrl}${
+              bookingUrl.includes("?") ? "&" : "?"
+            }payment_id=${encodeURIComponent(response.razorpay_payment_id ?? "")}`
             window.location.href = redirectUrl
           },
           theme: { color: "#b45309" },
         }
-
 
         if (typeof window !== "undefined" && typeof window.Razorpay === "function") {
           try {
@@ -118,7 +116,6 @@ export default function Hero() {
             const rzp = new RzpCtor(options)
             rzp.open()
           } catch (err) {
-
             console.error("Failed to open Razorpay checkout:", err)
           }
         } else {
@@ -129,7 +126,6 @@ export default function Hero() {
 
       document.body.appendChild(script)
     } catch (error) {
-
       console.error(error)
       alert("Failed to initialize payment. Please try again.")
     }
@@ -141,7 +137,7 @@ export default function Hero() {
     {
       id: 1,
       src: "https://ik.imagekit.io/e2chvlkmnb/WhatsApp%20Image%202025-11-17%20at%201.23.51%20PM.jpeg",
-      mobileSrc: "https://ik.imagekit.io/e2chvlkmnb/image_361x420.jpg",
+      mobileSrc: "https://ik.imagekit.io/wor7mufym/starttta.png",
       alt: "Pandit Parmanand Goswami - 1",
     },
     {
@@ -172,7 +168,9 @@ export default function Hero() {
                           src={isClient && isMobile && img.mobileSrc ? img.mobileSrc : img.src}
                           alt={img.alt}
                           fill
-                          className="object-cover"
+                          quality={100}
+                          sizes={isMobile ? "100vw" : "50vw"}
+                          className="  md:object-cover"
                         />
                       </div>
                     </SwiperSlide>
@@ -188,8 +186,9 @@ export default function Hero() {
                       swiperInstance?.slideTo(idx)
                       setActiveIndex(idx)
                     }}
-                    className={`relative rounded-lg overflow-hidden border-2 ${activeIndex === idx ? "border-[#ff6c0c] scale-105" : "border-transparent"
-                      }`}
+                    className={`relative rounded-lg overflow-hidden border-2 ${
+                      activeIndex === idx ? "border-[#ff6c0c] scale-105" : "border-transparent"
+                    }`}
                     style={{ width: 72, height: 72 }}
                   >
                     <Image src={img.src} alt={img.alt} fill className="object-cover" />
@@ -206,14 +205,21 @@ export default function Hero() {
 
             <p className="text-lg text-gray-700 font-semibold flex items-baseline gap-2">
               Rs. {displayPrice}
-              <span className="text-sm text-red-500 line-through mt-0.5">
-                ₹{actualPrice}
-              </span>
+              <span className="text-sm text-red-500 line-through mt-0.5">₹{actualPrice}</span>
             </p>
 
-            <p className="text-gray-600">Life gets difficult when you don’t know what to do next. Whether it’s love, marriage, career, money, or health, the right guidance can change everything.</p>
-            <p className="text-gray-600">With our 1:1 Live Video Consultation, you get personal, accurate and practical solutions for every problem.</p>
-            <p className="text-gray-600">Our expert astrologer Pandit Parmanand Goswami Ji studies your Kundali carefully and explains:</p>
+            <p className="text-gray-600">
+              Life gets difficult when you don’t know what to do next. Whether it’s love, marriage,
+              career, money, or health, the right guidance can change everything.
+            </p>
+            <p className="text-gray-600">
+              With our 1:1 Live Video Consultation, you get personal, accurate and practical
+              solutions for every problem.
+            </p>
+            <p className="text-gray-600">
+              Our expert astrologer Pandit Parmanand Goswami Ji studies your Kundali carefully and
+              explains:
+            </p>
 
             <ul className="space-y-3">
               {[
@@ -235,17 +241,20 @@ export default function Hero() {
                 </li>
               ))}
             </ul>
-            <p className="text-gray-600">Every consultation is simple, honest and focused on giving you clarity.</p>
+            <p className="text-gray-600">
+              Every consultation is simple, honest and focused on giving you clarity.
+            </p>
 
             <div className="flex gap-4 pt-4">
-              {['15', '30'].map((duration) => (
+              {["15", "30"].map((duration) => (
                 <button
                   key={duration}
                   onClick={() => setSelectedDuration(duration)}
-                  className={`px-6 py-2 border-2 rounded-lg font-medium transition ${selectedDuration === duration
+                  className={`px-6 py-2 border-2 rounded-lg font-medium transition ${
+                    selectedDuration === duration
                       ? "bg-[#ff6c0c] border-[#ff6c0c] text-white"
                       : "border-[#ff6c0c] text-[#ff6c0c] hover:bg-[#ff6c0c]"
-                    }`}
+                  }`}
                 >
                   {duration} Minutes
                 </button>
